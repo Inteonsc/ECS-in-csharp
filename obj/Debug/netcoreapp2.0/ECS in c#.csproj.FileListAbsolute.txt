@@ -1,0 +1,14 @@
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\ECS in c#.deps.json
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\ECS in c#.runtimeconfig.json
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\ECS in c#.runtimeconfig.dev.json
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\ECS in c#.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\ECS in c#.pdb
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\sfmlnet-audio-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\sfmlnet-graphics-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\sfmlnet-system-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\sfmlnet-window-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\ECS in c#.csproj.CoreCompileInputs.cache
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\ECS in c#.AssemblyInfoInputs.cache
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\ECS in c#.AssemblyInfo.cs
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\ECS in c#.dll
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\ECS in c#.pdb
