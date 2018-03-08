@@ -5,11 +5,11 @@ namespace ECS {
 
 
     //This stores a list of entities and also how many entities there are.
-    static class World{
+    public static class World{
        //this is used for new IDs
         static uint numofEntities = 0;
 
-        static List<Entity> entityList = new List<Entity>();
+        public static List<Entity> entityList = new List<Entity>();
         //This retrieves the number of entities
         public static uint GetNumofEntities(){
         

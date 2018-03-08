@@ -664,23 +664,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\liam j\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/home/inteon/.nuget/packages/": {},
+    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\#PRODUCTION\\new coding\\ECS in c#\\ECS in c#.csproj",
+      "projectUniqueName": "/home/inteon/Documents/coding/ecs in c#/ECS in c#.csproj",
       "projectName": "ECS in c#",
-      "projectPath": "G:\\#PRODUCTION\\new coding\\ECS in c#\\ECS in c#.csproj",
-      "packagesPath": "C:\\Users\\liam j\\.nuget\\packages\\",
-      "outputPath": "G:\\#PRODUCTION\\new coding\\ECS in c#\\obj\\",
+      "projectPath": "/home/inteon/Documents/coding/ecs in c#/ECS in c#.csproj",
+      "packagesPath": "/home/inteon/.nuget/packages/",
+      "outputPath": "/home/inteon/Documents/coding/ecs in c#/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\liam j\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/inteon/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -715,5 +715,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/inteon/Documents/coding/ecs in c#/obj/ECS in c#.csproj.nuget.cache : Found invalid data while decoding."
+    }
+  ]
 }
