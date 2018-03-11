@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 
 using SFML;
 using SFML.Graphics;
@@ -40,20 +41,37 @@ namespace RectangleEaterClone {
                 app.GainedFocus += new EventHandler(OnGainFocus);
                 AppSettings.windowColor = new Color(0, 192, 255);
 
-                //Tests the entity ID system.
-                Entity[] entarr = new Entity[50];
+                
+                //create some test objects;
+                //create the entity and components
+                Entity temp1 = new Entity();
+                Entity temp2 = new Entity();
+                ColorComponent EntColor1 = new ColorComponent();
+                Position EntPos1 = new Position();
+                ColorComponent EntColor2 = new ColorComponent();
+                Position EntPos2 = new Position();
 
-                for(int i = 0; i<entarr.Length;i++){
-                    entarr[i] = new Entity();
+                //configure the components
+                EntPos1.x = 50; EntPos1.y = 50;
+                EntColor1.objectColor = Color.Red;
+                //add the components
+                temp1.componentsList.Add(EntPos1);
+                temp1.componentsList.Add(EntColor1);
+                //Spawn the entity
+                World.AddEntity(temp1);
+                
+                
 
-                    Console.WriteLine(entarr[i].id);
-                }
-                entarr[20].componentsList.Add(new ECS.Health(10));
+                
 
-               Health test = entarr[20].componentsList.OfType<Health>().FirstOrDefault();
-
-               Console.WriteLine("hp is:" + test.hp);
-
+                EntPos2.x = 200; EntPos2.y = 200;
+                EntColor2.objectColor = Color.Green;
+                //add the components
+                temp2.componentsList.Add(EntPos2);
+                temp2.componentsList.Add(EntColor2);
+                //Spawn the entity
+                
+                World.AddEntity(temp2);
 
 
 
@@ -64,7 +82,7 @@ namespace RectangleEaterClone {
                     
                     // Clear screen
                     app.Clear(AppSettings.windowColor);
-
+                    Game.render(app);
                     // Update the window
                     app.Display();
                 } //End game loop

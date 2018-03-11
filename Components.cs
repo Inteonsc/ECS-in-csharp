@@ -17,13 +17,13 @@ namespace ECS {
     }
 
     public class Position : Component{
-        int x;
-        int y;
+        public int x;
+        public int y;
     }
 
 
     public class ColorComponent : Component{
-        Color objectColor;
+        public Color objectColor;
 
     }
     public class PlayerControlled : Component{
