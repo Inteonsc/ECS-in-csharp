@@ -46,26 +46,18 @@ namespace RectangleEaterClone {
                 //create the entity and components
                 Entity temp1 = new Entity();
                 Entity temp2 = new Entity();
-                ColorComponent EntColor1 = new ColorComponent();
-                Position EntPos1 = new Position();
-                ColorComponent EntColor2 = new ColorComponent();
-                Position EntPos2 = new Position();
+                ColorComponent EntColor1 = new ColorComponent(Color.Red);
+                Position EntPos1 = new Position(50,50);
+                ColorComponent EntColor2 = new ColorComponent(Color.Green);
+                Position EntPos2 = new Position(200,200);
 
-                //configure the components
-                EntPos1.x = 50; EntPos1.y = 50;
-                EntColor1.objectColor = Color.Red;
+
                 //add the components
                 temp1.componentsList.Add(EntPos1);
                 temp1.componentsList.Add(EntColor1);
                 //Spawn the entity
                 World.AddEntity(temp1);
-                
-                
 
-                
-
-                EntPos2.x = 200; EntPos2.y = 200;
-                EntColor2.objectColor = Color.Green;
                 //add the components
                 temp2.componentsList.Add(EntPos2);
                 temp2.componentsList.Add(EntColor2);

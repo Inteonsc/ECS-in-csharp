@@ -19,15 +19,31 @@ namespace ECS {
     public class Position : Component{
         public int x;
         public int y;
+
+        public Position(int inputx, int inputy){
+            x = inputx;
+            y = inputy;
+        }
     }
 
 
     public class ColorComponent : Component{
         public Color objectColor;
 
+        public ColorComponent(Color col){
+            objectColor = col;
+        }
+
     }
+
+    // doesn't need any values yet. just by having a player controlled component shows
+    // that its player controlled. no need for bool.
     public class PlayerControlled : Component{
-        bool pc;
+        
+
+        public PlayerControlled(){
+
+        }
 
     }
 }
