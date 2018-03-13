@@ -41,6 +41,8 @@ namespace RectangleEaterClone {
                 app.GainedFocus += new EventHandler(OnGainFocus);
                 AppSettings.windowColor = new Color(0, 192, 255);
 
+
+                Game.Start(app);
                 
                 //create some test objects;
                 //create the entity and components

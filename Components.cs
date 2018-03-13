@@ -24,6 +24,13 @@ namespace ECS {
             x = inputx;
             y = inputy;
         }
+
+        public void Set(int X, int Y){
+            x = X;
+            y = Y;
+        }
+        
+        
     }
 
 
