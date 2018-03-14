@@ -1,6 +1,7 @@
 using ECS;
 using SFML.Window;
 using SFML.System;
+using SFML.Graphics;
 using System.Linq;
 
 namespace systems {
@@ -8,20 +9,23 @@ namespace systems {
     public partial class SystemsContainer{
         
         //delta time is time since last frame. worked out in Game.cs.
-        public void PlayerControl(Entity ent, Time deltaTime){
-            int tmpX = 0;
-            int tmpY = 0;
+        public void PlayerControl(Entity ent, Time deltaTime, RenderWindow app){
+            
+            
+            float tmpX = ent.componentsList.OfType<Position>().First().x;
+            float tmpY = ent.componentsList.OfType<Position>().First().y;
+            
             if(Keyboard.IsKeyPressed(Keyboard.Key.W)){
-                tmpY += 5 * deltaTime.AsMilliseconds();
+                tmpY += 20 * deltaTime.AsSeconds();
             }
             if(Keyboard.IsKeyPressed(Keyboard.Key.A)){
-                tmpX -= 5 * deltaTime.AsMilliseconds();
+                tmpX -= 20 * deltaTime.AsSeconds();
             }
             if(Keyboard.IsKeyPressed(Keyboard.Key.S)){
-                tmpY -= 5 * deltaTime.AsMilliseconds();
+                tmpY -= 20 * deltaTime.AsSeconds();
             }
             if(Keyboard.IsKeyPressed(Keyboard.Key.D)){
-                tmpX += 5 * deltaTime.AsMilliseconds();
+                tmpX += 20 * deltaTime.AsSeconds();
             }
             ent.componentsList.OfType<Position>().First().Set(tmpX,tmpY);
 

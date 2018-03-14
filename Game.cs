@@ -11,7 +11,7 @@ namespace RectangleEaterClone {
 
            static systems.SystemsContainer sysContainer = new systems.SystemsContainer();
            static Entity playerEnt;
-           static Clock deltaTime;
+           static Clock deltaTime = new Clock();
 
            static RenderWindow app;
 
@@ -19,7 +19,7 @@ namespace RectangleEaterClone {
             //runs at the start of the game. Makes starting object.
             public static void Start(RenderWindow appwindow){
                 app = appwindow;
-                Entity playerEnt = new Entity();
+                playerEnt = new Entity();
                 World.AddEntity(playerEnt);
                 playerEnt.componentsList.Add(new Position((int)app.Size.X /2,(int) app.Size.Y / 2));
                 playerEnt.componentsList.Add(new PlayerControlled());
@@ -48,7 +48,7 @@ namespace RectangleEaterClone {
                 //maybe multithread and make it run independently of render.
             public static void update(RenderWindow app){
                 
-                sysContainer.PlayerControl(playerEnt, deltaTime.Restart());
+                sysContainer.PlayerControl(playerEnt, deltaTime.Restart(), app);
             }
 
     }

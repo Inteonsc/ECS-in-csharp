@@ -17,15 +17,15 @@ namespace ECS {
     }
 
     public class Position : Component{
-        public int x;
-        public int y;
+        public float x;
+        public float y;
 
-        public Position(int inputx, int inputy){
+        public Position(float inputx, float inputy){
             x = inputx;
             y = inputy;
         }
 
-        public void Set(int X, int Y){
+        public void Set(float X, float Y){
             x = X;
             y = Y;
         }

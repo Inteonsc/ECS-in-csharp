@@ -7,7 +7,7 @@ using System.Threading;
 using SFML;
 using SFML.Graphics;
 using SFML.Window;
-
+using SFML.System;
 using ECS;
 
 namespace RectangleEaterClone {
@@ -31,6 +31,9 @@ namespace RectangleEaterClone {
                 //Should probably add resume code.
             }
 
+
+
+
             static void Main() {
                 // Create the main window
                 RenderWindow app = new RenderWindow(new VideoMode(800, 600), "SFML Works!", Styles.None);
@@ -40,8 +43,8 @@ namespace RectangleEaterClone {
                 app.LostFocus += new EventHandler(OnLostFocus);
                 app.GainedFocus += new EventHandler(OnGainFocus);
                 AppSettings.windowColor = new Color(0, 192, 255);
-
-
+                app.SetKeyRepeatEnabled(false);
+                
                 Game.Start(app);
                 
                 //create some test objects;
@@ -68,7 +71,9 @@ namespace RectangleEaterClone {
                 World.AddEntity(temp2);
 
 
-
+                Clock tickrateClock = new Clock();
+                Time tickrate = Time.FromSeconds(1f / 120f);
+                Time accumulator = Time.Zero;
                 // Start the game loop
                 while (app.IsOpen) {
                     // Process events
@@ -76,9 +81,21 @@ namespace RectangleEaterClone {
                     
                     // Clear screen
                     app.Clear(AppSettings.windowColor);
+
+
+                    if(accumulator > tickrate){
+                        Game.update(app);
+                        accumulator -= tickrate;
+                    }
+
+
                     Game.render(app);
+
+
                     // Update the window
                     app.Display();
+                    accumulator += tickrateClock.Restart();
+
                 } //End game loop
             } //End Main()
         } //End Program
