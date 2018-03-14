@@ -21,15 +21,14 @@ namespace RectangleEaterClone {
 
             static void OnLostFocus(object sender, EventArgs e){
                 //DEATH RED
-                AppSettings.windowColor = Color.Red;
+                
+                RenderWindow window = (RenderWindow)sender;
+                window.SetMouseCursorVisible(true);
+                Game.setPauseState(true);
                 //Should probably add pause code.
             }
 
-            static void OnGainFocus(object sender, EventArgs e){
-                //good blue
-                AppSettings.windowColor = new Color(0, 192, 255);
-                //Should probably add resume code.
-            }
+
 
 
 
@@ -41,60 +40,49 @@ namespace RectangleEaterClone {
                 
                 app.Closed += new EventHandler(OnClose);
                 app.LostFocus += new EventHandler(OnLostFocus);
-                app.GainedFocus += new EventHandler(OnGainFocus);
+                
                 AppSettings.windowColor = new Color(0, 192, 255);
                 app.SetKeyRepeatEnabled(false);
-                
+                app.SetMouseCursorVisible(false);
+                app.Position = new Vector2i(200,200);
                 Game.Start(app);
                 
-                //create some test objects;
-                //create the entity and components
-                Entity temp1 = new Entity();
-                Entity temp2 = new Entity();
-                ColorComponent EntColor1 = new ColorComponent(Color.Red);
-                Position EntPos1 = new Position(50,50);
-                ColorComponent EntColor2 = new ColorComponent(Color.Green);
-                Position EntPos2 = new Position(200,200);
-
-
-                //add the components
-                temp1.componentsList.Add(EntPos1);
-                temp1.componentsList.Add(EntColor1);
-                //Spawn the entity
-                World.AddEntity(temp1);
-
-                //add the components
-                temp2.componentsList.Add(EntPos2);
-                temp2.componentsList.Add(EntColor2);
-                //Spawn the entity
                 
-                World.AddEntity(temp2);
 
-
+                //program loop. maybe move to game.
                 Clock tickrateClock = new Clock();
                 Time tickrate = Time.FromSeconds(1f / 120f);
-                Time accumulator = Time.Zero;
+                Time renderRate = Time.FromSeconds(1f / 70f);
+                Time accumulatorLogic = Time.Zero;
+                Time accumulatorRender = Time.Zero;
                 // Start the game loop
                 while (app.IsOpen) {
-                    // Process events
-                    app.DispatchEvents();
                     
-                    // Clear screen
-                    app.Clear(AppSettings.windowColor);
+                    
+                    
+                    
 
 
-                    if(accumulator > tickrate){
+                    if(accumulatorLogic > tickrate){
+                        // Process events
+                        app.DispatchEvents();
                         Game.update(app);
-                        accumulator -= tickrate;
+                        accumulatorLogic -= tickrate;
+                    }
+
+                    if(accumulatorRender > renderRate){
+                        app.Clear(AppSettings.windowColor);
+                        Game.render(app);
+                        accumulatorRender -= renderRate;
+                        // Update the window
+                        app.Display();
                     }
 
 
-                    Game.render(app);
-
-
-                    // Update the window
-                    app.Display();
-                    accumulator += tickrateClock.Restart();
+                    
+                    Time deltaTime = tickrateClock.Restart();
+                    accumulatorLogic += deltaTime;
+                    accumulatorRender += deltaTime;
 
                 } //End game loop
             } //End Main()
