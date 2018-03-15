@@ -12,8 +12,8 @@ namespace systems {
         public void PlayerControl(Entity ent, Time deltaTime, RenderWindow app){
             
             
-            float tmpX = ent.componentsList.OfType<Position>().First().x;
-            float tmpY = ent.componentsList.OfType<Position>().First().y;
+            float tmpX = ent.componentsList.OfType<PhysicalProps>().First().x;
+            float tmpY = ent.componentsList.OfType<PhysicalProps>().First().y;
 
             /* Old Keyboard controls. This is here incase i want to add keyboard controls.
             if(Keyboard.IsKeyPressed(Keyboard.Key.W)){
@@ -37,7 +37,7 @@ namespace systems {
             tmpX = mousePos.X - 10;
             tmpY = mousePos.Y - 10;
 
-            ent.componentsList.OfType<Position>().First().Set(tmpX,tmpY);
+            ent.componentsList.OfType<PhysicalProps>().First().SetPos(tmpX,tmpY);
 
         }
 

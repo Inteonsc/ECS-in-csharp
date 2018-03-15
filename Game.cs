@@ -24,7 +24,7 @@ namespace RectangleEaterClone {
                 app = appwindow;
                 playerEnt = new Entity();
                 World.AddEntity(playerEnt);
-                playerEnt.componentsList.Add(new Position((int)app.Size.X /2,(int) app.Size.Y / 2));
+                playerEnt.componentsList.Add(new PhysicalProps((int)app.Size.X /2,(int) app.Size.Y / 2, 20, 20));
                 playerEnt.componentsList.Add(new PlayerControlled());
                 playerEnt.componentsList.Add(new ColorComponent(Color.Green));
 
@@ -35,18 +35,26 @@ namespace RectangleEaterClone {
 
 
                 //add the components
-                temp1.componentsList.Add(new Position(50,50));
+                temp1.componentsList.Add(new PhysicalProps(50,50,20,20));
                 temp1.componentsList.Add(new ColorComponent(Color.Red));
                 //Spawn the entity
                 World.AddEntity(temp1);
 
                 //add the components
                 temp2.componentsList.Add(new ColorComponent(Color.Green));
-                temp2.componentsList.Add(new Position(200,200));
+                temp2.componentsList.Add(new PhysicalProps(200,20,200,20));
                 //Spawn the entity
                 
                 World.AddEntity(temp2);
 
+
+                //pause menu entities
+
+                Entity resumeButton = new Entity();
+                resumeButton.componentsList.Add(new UIObject(false));
+
+                resumeButton.componentsList.Add(new PhysicalProps((app.Size.X / 2), (app.Size.Y / 2) , 200,80));
+                World.AddEntity(resumeButton);
 
                 deltaTime.Restart();
 
@@ -59,7 +67,7 @@ namespace RectangleEaterClone {
                 //filter all entities to only ones which can be drawn. can expand later to only
                 //ones on the screen. for optimiziation
                 foreach(Entity entities in ECS.World.entityList){
-                        if(entities.componentsList.OfType<ColorComponent>().Any() && entities.componentsList.OfType<Position>().Any() ){
+                        if(entities.componentsList.OfType<ColorComponent>().Any() && entities.componentsList.OfType<PhysicalProps>().Any() ){
                             entToDraw.Add(entities);
                         }
                 }
@@ -84,7 +92,7 @@ namespace RectangleEaterClone {
                 paused = pause;
                 if(pause == false){
                     //only pauses main screen.
-                    Mouse.SetPosition(new Vector2i((int)playerEnt.componentsList.OfType<Position>().First().x,(int) playerEnt.componentsList.OfType<Position>().First().y), app);
+                    Mouse.SetPosition(new Vector2i((int)playerEnt.componentsList.OfType<PhysicalProps>().First().x,(int) playerEnt.componentsList.OfType<PhysicalProps>().First().y), app);
                     
                 }
             }

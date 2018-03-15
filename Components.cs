@@ -16,16 +16,22 @@ namespace ECS {
         
     }
 
-    public class Position : Component{
+    public class PhysicalProps : Component{
+        
         public float x;
         public float y;
 
-        public Position(float inputx, float inputy){
+        public float sizeX;
+        public float sizeY;
+
+        public PhysicalProps(float inputx, float inputy, float inputSX, float inputSY){
             x = inputx;
             y = inputy;
+            sizeX = inputSX;
+            sizeY = inputSY;
         }
 
-        public void Set(float X, float Y){
+        public void SetPos(float X, float Y){
             x = X;
             y = Y;
         }
@@ -53,4 +59,16 @@ namespace ECS {
         }
 
     }
+
+    public class UIObject : Component{
+        bool active;
+        
+        public UIObject(bool Active){
+            active = Active;
+        }
+
+    }
+
+
+    
 }

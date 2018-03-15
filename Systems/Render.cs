@@ -15,7 +15,7 @@ namespace systems {
 
             //draw game objects.
             foreach(Entity ent in entsToDraw){
-                Position posComponent = ent.componentsList.OfType<Position>().First();
+                PhysicalProps posComponent = ent.componentsList.OfType<PhysicalProps>().First();
                 
                 ColorComponent colourComponent = ent.componentsList.OfType<ColorComponent>().First();
 
@@ -23,7 +23,7 @@ namespace systems {
 
                 shape.FillColor = colourComponent.objectColor;
                 shape.Position = new SFML.System.Vector2f(posComponent.x, posComponent.y);
-                shape.Size = new SFML.System.Vector2f(20, 20);
+                shape.Size = new SFML.System.Vector2f(posComponent.sizeX, posComponent.y);
                 
                 app.Draw(shape);
                 
