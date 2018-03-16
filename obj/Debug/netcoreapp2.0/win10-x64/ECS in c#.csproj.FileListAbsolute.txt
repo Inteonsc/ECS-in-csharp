@@ -1,0 +1,18 @@
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\hostpolicy.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\hostfxr.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\ECS in c#.exe
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\ECS in c#.deps.json
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\ECS in c#.runtimeconfig.json
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\ECS in c#.runtimeconfig.dev.json
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\ECS in c#.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\ECS in c#.pdb
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\sfmlnet-audio-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\sfmlnet-graphics-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\sfmlnet-system-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\sfmlnet-window-2.dll
+G:\#PRODUCTION\new coding\ECS in c#\bin\Debug\netcoreapp2.0\win10-x64\sfmlnet-graphics-2.dll.config
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.csproj.CoreCompileInputs.cache
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.AssemblyInfoInputs.cache
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.AssemblyInfo.cs
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.dll
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.pdb

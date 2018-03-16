@@ -25,6 +25,8 @@ namespace RectangleEaterClone {
                 RenderWindow window = (RenderWindow)sender;
                 window.SetMouseCursorVisible(true);
                 Game.setPauseState(true);
+                Game.uiScene = 1;
+                Game.uiUpdate = 1;
                 //Should probably add pause code.
             }
 
@@ -59,7 +61,7 @@ namespace RectangleEaterClone {
                 while (app.IsOpen) {
                     
                     
-                    
+                    Thread.Sleep(4);
                     
 
 

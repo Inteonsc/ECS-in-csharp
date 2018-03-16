@@ -12,14 +12,15 @@ namespace ECS {
         public static List<Entity> entityList = new List<Entity>();
         //This retrieves the number of entities
         public static uint GetNumofEntities(){
-        
+            
             return numofEntities;
         }
 
         //This is called by Entity when a new entity is created. This adds the entity to the list and also increments the number of entities.
         public static uint AddEntity(Entity ent){
             numofEntities++;
-            entityList.Add(ent);
+            
+            entityList.Add( ent );
             return numofEntities;
         }
 

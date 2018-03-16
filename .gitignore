@@ -1,2 +1,4 @@
 ECS in c#.csproj
 *.dll
+/bin/*
+/lib/*

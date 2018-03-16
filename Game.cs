@@ -10,23 +10,27 @@ namespace RectangleEaterClone {
 
     public static class Game{
 
-           static systems.SystemsContainer sysContainer = new systems.SystemsContainer();
-           static Entity playerEnt;
-           static Clock deltaTime = new Clock();
+        static systems.SystemsContainer sysContainer = new systems.SystemsContainer();
+        static Entity playerEnt;
+        static Clock deltaTime = new Clock();
 
-           static RenderWindow app;
+        static RenderWindow app;
 
-           static  bool paused = false;
+        static  bool paused = false;
+        
+        //0 = playing, 1 = pause. Should make enum. Decides which UI to draw.
+        static public int uiScene = 0;
 
+        static public int uiUpdate = 0;
             
-            //runs at the start of the game. Makes starting object.
-            public static void Start(RenderWindow appwindow){
-                app = appwindow;
-                playerEnt = new Entity();
-                World.AddEntity(playerEnt);
-                playerEnt.componentsList.Add(new PhysicalProps((int)app.Size.X /2,(int) app.Size.Y / 2, 20, 20));
-                playerEnt.componentsList.Add(new PlayerControlled());
-                playerEnt.componentsList.Add(new ColorComponent(Color.Green));
+        //runs at the start of the game. Makes starting object.
+        public static void Start(RenderWindow appwindow){
+            app = appwindow;
+            playerEnt = new Entity();
+            World.AddEntity(playerEnt);
+            playerEnt.componentsList.Add(new PhysicalProps((int)app.Size.X /2,(int) app.Size.Y / 2, 20, 20));
+            playerEnt.componentsList.Add(new PlayerControlled());
+            playerEnt.componentsList.Add(new ColorComponent(Color.Green));
 
                 //create some test objects;
                 //create the entity and components
@@ -37,24 +41,41 @@ namespace RectangleEaterClone {
                 //add the components
                 temp1.componentsList.Add(new PhysicalProps(50,50,20,20));
                 temp1.componentsList.Add(new ColorComponent(Color.Red));
-                //Spawn the entity
-                World.AddEntity(temp1);
-
+               
                 //add the components
                 temp2.componentsList.Add(new ColorComponent(Color.Green));
-                temp2.componentsList.Add(new PhysicalProps(200,20,200,20));
-                //Spawn the entity
+                temp2.componentsList.Add(new PhysicalProps(200,20,20,20));
                 
-                World.AddEntity(temp2);
+                
+               
 
 
                 //pause menu entities
 
                 Entity resumeButton = new Entity();
-                resumeButton.componentsList.Add(new UIObject(false));
+                Texture text = new Texture("greenUI.png");
+                       
+                resumeButton.componentsList.Add(new UIImage(true, text, 1, Color.White, 1));
+                resumeButton.componentsList.Add(new PhysicalProps((app.Size.X -200), (app.Size.Y / 2) -20 , 200,40));
+                resumeButton.sprite = new Sprite();
+                resumeButton.sprite.Position = new Vector2f((app.Size.X -200), (app.Size.Y / 2) -20 );
 
-                resumeButton.componentsList.Add(new PhysicalProps((app.Size.X / 2), (app.Size.Y / 2) , 200,80));
-                World.AddEntity(resumeButton);
+                Entity resumeButton2 = new Entity();
+                
+                       
+                resumeButton2.componentsList.Add(new UIImage(true, text, 1, Color.White, 1));
+                resumeButton2.componentsList.Add(new PhysicalProps((app.Size.X -245), (app.Size.Y / 2) + 25 , 200,40));
+                resumeButton2.sprite = new Sprite();
+                resumeButton2.sprite.Position = new Vector2f((app.Size.X -245), (app.Size.Y / 2) +25 );
+
+
+                Entity resumeButton3 = new Entity();
+                
+                       
+                resumeButton3.componentsList.Add(new UIImage(true, text, 1, Color.White, 1));
+                resumeButton3.componentsList.Add(new PhysicalProps((app.Size.X -290), (app.Size.Y / 2) +70 , 200,40));
+                resumeButton3.sprite = new Sprite();
+                resumeButton3.sprite.Position = new Vector2f((app.Size.X -290), (app.Size.Y / 2) +70 );
 
                 deltaTime.Restart();
 
@@ -64,14 +85,20 @@ namespace RectangleEaterClone {
 
                 //temporary list of entities to draw.
                 List<ECS.Entity> entToDraw = new List<Entity>();
+                List<ECS.Entity> uiEntToDraw = new List<Entity>();
                 //filter all entities to only ones which can be drawn. can expand later to only
                 //ones on the screen. for optimiziation
                 foreach(Entity entities in ECS.World.entityList){
                         if(entities.componentsList.OfType<ColorComponent>().Any() && entities.componentsList.OfType<PhysicalProps>().Any() ){
                             entToDraw.Add(entities);
                         }
+                        else if(entities.componentsList.OfType<UIObject>().Any() && entities.componentsList.OfType<PhysicalProps>().Any() ){
+                            if(entities.componentsList.OfType<UIObject>().First().active && entities.componentsList.OfType<UIObject>().First().scene == uiScene )
+                                uiEntToDraw.Add(entities);
+                            
+                        }
                 }
-                sysContainer.Render(entToDraw, app);
+                sysContainer.Render(entToDraw,uiEntToDraw, app);
 
             }
                 //this contains all the logic that happens. 
@@ -80,10 +107,18 @@ namespace RectangleEaterClone {
                 Time dTimeLog = deltaTime.Restart();
 
                 sysContainer.PauseManager(app);
-                if(!Game.paused){
-                    sysContainer.PlayerControl(playerEnt, dTimeLog, app);
-                    sysContainer.Update(null, dTimeLog, app);
-                }
+                List<Entity> UIEntToUpdate = new List<Entity>();
+                    foreach(Entity entities in ECS.World.entityList){
+                        if(entities.componentsList.OfType<UIObject>().Any()){
+                            if(entities.componentsList.OfType<UIObject>().First().animType == uiUpdate)
+                                UIEntToUpdate.Add(entities);
+
+                            
+                        }
+                    }
+                if(!Game.paused)
+                   sysContainer.PlayerControl(playerEnt, dTimeLog, app);
+                sysContainer.Update(null, UIEntToUpdate, dTimeLog, app);
             }
 
             // WARNING==========================================================================================================================================
@@ -95,6 +130,7 @@ namespace RectangleEaterClone {
                     Mouse.SetPosition(new Vector2i((int)playerEnt.componentsList.OfType<PhysicalProps>().First().x,(int) playerEnt.componentsList.OfType<PhysicalProps>().First().y), app);
                     
                 }
+
             }
 
             public static bool getPauseState(){

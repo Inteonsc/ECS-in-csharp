@@ -4,7 +4,7 @@ using SFML.Graphics;
 namespace ECS {
 
     public class Component{
-
+        
     }
 
     public class Health : Component{
@@ -61,12 +61,41 @@ namespace ECS {
     }
 
     public class UIObject : Component{
-        bool active;
+        public bool active;
         
-        public UIObject(bool Active){
-            active = Active;
-        }
+        //When to Draw. 0 = while playing game, 1 = pause menu. Should make this an enum
+        public int scene;
+        //decides which hoverover, click animations to play.
+        public int animType;
 
+        
+
+    }
+
+    public class UIImage : UIObject{
+
+
+        public Texture texture;
+        public Color col;
+        public UIImage(bool Active, Texture tex, int Scene, Color color, int AnimType){
+            active = Active;
+            texture = tex;
+            scene = Scene;
+            col = color;
+            animType = AnimType;
+        }
+    }
+
+    public class UIText : UIObject{
+
+
+        public Text text;
+        public UIText(bool Active, Text tex, int AnimType, int Scene){
+            active = Active;
+            text = tex;
+            scene = Scene;
+            animType = AnimType;
+        }
     }
 
 

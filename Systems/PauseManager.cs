@@ -19,8 +19,12 @@ namespace systems {
                     Game.setPauseState(!Game.getPauseState());
                     if(Game.getPauseState()){
                         app.SetMouseCursorVisible(true);
+                        Game.uiScene = 1;
+                        Game.uiUpdate = 1;
                     }else{
                         app.SetMouseCursorVisible(false);
+                        Game.uiScene = 0;
+                        Game.uiUpdate = 0;
                     }
                     pauseTimer.Restart();
                 }
