@@ -6,7 +6,7 @@ using System.Linq;
 
 using SFML.Graphics;
 using SFML.Window;
-
+//Update so that it gets all the enties from the world, 1 foreach and then seperate them. Remove entsToDraw and UIEnts
 namespace systems{
 
     public partial class SystemsContainer{

@@ -8,11 +8,11 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-
+//Update so that it gets all the enties from the world, 1 foreach and then seperate them. Remove entsToDraw and UIEnts
 namespace systems {
 
     public partial class SystemsContainer{
-
+        
         public void Update(List<Entity> entToUpdate,List<Entity> uiEntToUpdate, Time deltaTime, RenderWindow app){
             Entity PC = null;
             //get player character

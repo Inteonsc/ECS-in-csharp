@@ -9,10 +9,10 @@ namespace ECS {
 
     public class Health : Component{
         public int hp;
-        public int DecayRate;
-        public Health(int HP, int decayrate){
+        
+        public Health(int HP){
             hp = HP;
-            DecayRate = decayrate;
+            
         }
         
     }

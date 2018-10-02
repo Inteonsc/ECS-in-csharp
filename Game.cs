@@ -3,11 +3,13 @@
 using ECS;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 //TODO spawn more rectanges, collision detection, health decay and spawn more on death.
-//Spawn 50 rectangles at game start, make a system to change colour depending on whether they are bigger then the PC or not.
+//Spawn 50 rectangles at game start
+//update Update and render.cs
 namespace RectangleEaterClone {
 
     public static class Game{
@@ -29,28 +31,29 @@ namespace RectangleEaterClone {
         public static void Start(RenderWindow appwindow){
             app = appwindow;
             playerEnt = new Entity();
-            World.AddEntity(playerEnt);
-            playerEnt.componentsList.Add(new PhysicalProps((int)app.Size.X /2,(int) app.Size.Y / 2, 20, 20));
+            
+            playerEnt.componentsList.Add(new PhysicalProps((int)app.Size.X /2,(int) app.Size.Y / 2, 40, 40));
             playerEnt.componentsList.Add(new PlayerControlled());
             playerEnt.componentsList.Add(new ColorComponent(Color.Green));
-            playerEnt.componentsList.Add(new Health(70,10)); // dies in 7 seconds. Should make it scale depending on how much HP you have.
+            playerEnt.componentsList.Add(new Health(40)); // dies in 7 seconds. Should make it scale depending on how much HP you have.
 
-                //create some test objects;
-                //create the entity and components
-                Entity temp1 = new Entity();
-                Entity temp2 = new Entity();
+            //create Food Entities
+            
+            for(int i = 0; i<20; i++){
+                Entity FoodEnt = new Entity();
+                Random rand = new Random();
+                int Health = rand.Next(10,70);
+                int x = rand.Next(10 + (Health / 2),790 - (Health / 2));
+                int y = rand.Next(10 + (Health / 2),590 - (Health / 2));
 
-                
-                //add the components
-                temp1.componentsList.Add(new PhysicalProps(50,50,20,20));
-                temp1.componentsList.Add(new ColorComponent(Color.Red));
-                temp1.componentsList.Add(new Health(60,10));
-                temp1.componentsList.Add(new Food());
-                //add the components
-                temp2.componentsList.Add(new ColorComponent(Color.Green));
-                temp2.componentsList.Add(new PhysicalProps(200,20,20,20));
-                temp2.componentsList.Add(new Health(60,10));
-                temp2.componentsList.Add(new Food());
+                FoodEnt.componentsList.Add(new PhysicalProps(x,y,Health,Health));
+                FoodEnt.componentsList.Add(new ColorComponent(Color.Red));
+                FoodEnt.componentsList.Add(new Health(Health));
+                FoodEnt.componentsList.Add(new Food());
+
+            }
+
+
                 
                
 
