@@ -1,11 +1,13 @@
-
+//based on  http://erikhazzard.github.io/RectangleEater/
+//Could try to add quadtrees?
 using ECS;
 using System.Collections.Generic;
 using System.Linq;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-
+//TODO spawn more rectanges, collision detection, health decay and spawn more on death.
+//Spawn 50 rectangles at game start, make a system to change colour depending on whether they are bigger then the PC or not.
 namespace RectangleEaterClone {
 
     public static class Game{
@@ -31,21 +33,24 @@ namespace RectangleEaterClone {
             playerEnt.componentsList.Add(new PhysicalProps((int)app.Size.X /2,(int) app.Size.Y / 2, 20, 20));
             playerEnt.componentsList.Add(new PlayerControlled());
             playerEnt.componentsList.Add(new ColorComponent(Color.Green));
+            playerEnt.componentsList.Add(new Health(70,10)); // dies in 7 seconds. Should make it scale depending on how much HP you have.
 
                 //create some test objects;
                 //create the entity and components
                 Entity temp1 = new Entity();
                 Entity temp2 = new Entity();
 
-
+                
                 //add the components
                 temp1.componentsList.Add(new PhysicalProps(50,50,20,20));
                 temp1.componentsList.Add(new ColorComponent(Color.Red));
-               
+                temp1.componentsList.Add(new Health(60,10));
+                temp1.componentsList.Add(new Food());
                 //add the components
                 temp2.componentsList.Add(new ColorComponent(Color.Green));
                 temp2.componentsList.Add(new PhysicalProps(200,20,20,20));
-                
+                temp2.componentsList.Add(new Health(60,10));
+                temp2.componentsList.Add(new Food());
                 
                
 
@@ -103,22 +108,27 @@ namespace RectangleEaterClone {
             }
                 //this contains all the logic that happens. 
                 //maybe multithread and make it run independently of render.
+
+                
             public static void update(RenderWindow app){
                 Time dTimeLog = deltaTime.Restart();
 
                 sysContainer.PauseManager(app);
                 List<Entity> UIEntToUpdate = new List<Entity>();
+                List<Entity> entToUpdate = new List<Entity>();
                     foreach(Entity entities in ECS.World.entityList){
                         if(entities.componentsList.OfType<UIObject>().Any()){
                             if(entities.componentsList.OfType<UIObject>().First().animType == uiUpdate)
                                 UIEntToUpdate.Add(entities);
 
                             
+                        }else if(entities.componentsList.OfType<Food>().Any()){
+                            entToUpdate.Add(entities);
                         }
                     }
-                if(!Game.paused)
+                if(!Game.paused) //make it so only UIents update while paused.
                    sysContainer.PlayerControl(playerEnt, dTimeLog, app);
-                sysContainer.Update(null, UIEntToUpdate, dTimeLog, app);
+                sysContainer.Update(entToUpdate, UIEntToUpdate, dTimeLog, app);
             }
 
             // WARNING==========================================================================================================================================

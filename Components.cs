@@ -9,9 +9,10 @@ namespace ECS {
 
     public class Health : Component{
         public int hp;
-
-        public Health(int HP){
+        public int DecayRate;
+        public Health(int HP, int decayrate){
             hp = HP;
+            DecayRate = decayrate;
         }
         
     }
@@ -48,6 +49,10 @@ namespace ECS {
         }
 
     }
+    
+    public class Food : Component{
+
+    }
 
     // doesn't need any values yet. just by having a player controlled component shows
     // that its player controlled. no need for bool.
@@ -71,6 +76,8 @@ namespace ECS {
         
 
     }
+
+
 
     public class UIImage : UIObject{
 

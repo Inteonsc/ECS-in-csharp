@@ -16,3 +16,4 @@ G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.
 G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.AssemblyInfo.cs
 G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.dll
 G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.pdb
+G:\#PRODUCTION\new coding\ECS in c#\obj\Debug\netcoreapp2.0\win10-x64\ECS in c#.csprojResolveAssemblyReference.cache
